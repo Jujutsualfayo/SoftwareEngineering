@@ -1,0 +1,153 @@
+-c is a low level programming language
+-c is a small language and relatively makes use of standard libraries
+-to convert a program into a form that the machine can execute involves the following processes: preposessor, compilling, linking.
+-to copile a program in c, use the cmd    cc -o pun pun.c (given that you want the a.out file to be named pun) otherwise    cc pun.c
+-also can be compilled using the gcc compiler       gcc -o pun pun.c
+-c has no built in read and write commands
+- we use <stdio.h> which is a header (directive) is to be able to perform input and output functions
+-the word int before manin(void) indicates that the program returns an integer value
+-the word (void) in parenthesis indicates that main has no arguments
+-return 0 has two effects: indicates program termination and also that the programs returns a zero value
+-asking a func to perform its assigned task is called calling
+-we can comment in 2 ways:    /* this is a comment */    or   // this is a comment.
+the  // comment ends when a new line is started
+-variables are storage locations for data in program execution and each variable must have a type which specifies the kind of data it will hold.
+-floating points can store larger numbers than int, they can also store decimals
+-Before avariable is assigned such like  height = 5; it must first be declared this way:  int height;
+-append the letter f to a constant that has decimalsif the number is assigned to a float variable:height = 400.44f
+-%d is a placeholder indicating where a value is supposed to be filled during printing
+eg. printf("Height: %d\n", height)
+-the f in both scanf and printf stands for formatted
+-to read an int value we shall use scanf as follows:
+
+scanf("%d", &i);
+- the %d tells scanf to read integer value
+-for float we use scanf as follows;
+
+scanf("%f", &x);
+-dweight2.c file
+
+#include <stdio.h>
+
+int main(void){
+int height, length, width, volume, weight;
+
+printf("Enter height of box:  ");
+scanf("%d", &height);
+print("Enter length of box: ");
+scanf("%d", &length);
+print("Enter width of box: ");
+scanf("%d", &width);
+volume = lenght * height * width;
+weight = (volume + 165) / 166;
+
+printf("volume in cubic inches: %d\n", volume);
+printf("Dimensional weight in Pounds: %d\n", weight);
+
+return 0;
+}
+
+-DEFINING NAMES FOR CONSTANTS
+-Constants can be named using the macro definition feature
+-we use #define (this is a preposessing directive)
+for e.g
+
+#define INCHES_PER_POUND 166
+
+weight = (volume + INCHES_PER_POUND -1) / INCHES_PER_POUND);
+is the same as saying;
+weight = (volume + 166 -1) / 166);
+
+-macro naming constants is done using capital letters
+
+-CONVERTING FROM FAHREINHEIT TO CELSIUS
+celcius.c file
+
+#include <stdio.h>
+
+#define FREEZING_PT 32.0f
+#define SCALE_FACTOR (5.0F / 9.0F)
+
+int main(void){
+
+float fahrenheit, celcius;
+
+printf("Input fahrenheit: ");
+scanf("%f", &fahrenheit);
+celcius = (fahrenheit - FREEZING_PT) * SCALE_FACTOR;
+
+printf("Celcius equivalent: %.1f\n", celcius);
+return 0;
+}
+
+-
+FORMATTED INPUT/OUTPUT
+THE PRINF FUNC/SCANF FUNC
+-%d displays an int into decimal form using the smallest amount of space needed.
+-When using the printf and scanf the programmer must be wary to check that the number of conversion specifications matches the number of input variables
+-Adding fractions
+
+/*Adding fractions*/
+
+#include <stdio.h>
+
+int main(void){
+int first_num, second_num, first_denom, second_denom, result_num, result_denom
+
+printf("Insert first fraction: ");
+scanf("%d/%d", &first_num, &first_denom);
+printf("Insert second fraction: ");
+scanf("%d/%d", &second_num, &second_denom);
+
+result_num = first_num * second_denom + second_num * first_denom;
+result_denom = first_denom * second_denom;
+printf("result of the addition is: %d/%d\n", result_num, result_denom);
+
+return 0;
+
+}
+
+
+
+
+CHAPTER 4: EXPRESSIONS
+A)Arithmetic operators
+
+Python lists don't have a .peek() method. In our implementation, self.items is a regular Python list.
+Python provides collections.deque, a double-ended queue designed for efficient insertion and removal at both ends.
+deque = a data structure that lets you add and remove from both ends efficiently (append, appendleft, pop, popleft)
+Binary search requires sorted data and efficient access to the middle element. It's particularly suitable for arrays.
+O(log n) represents: the number of times we can divide the problem size by two until we reach one.
+why do we right  left = middle +1 
+We've already examined the middle element. If it wasn't our target, there's no reason to examine it again.
+A tree is a non-linear data structure that organises data in a hierarchy. Unlike arrays and linked lists, where elements are typically arranged sequentially, a tree represents relationships between elements.
+Recursion is when a function calls itself to solve a smaller version of the same problem.
+A Binary Search Tree is a special type of binary tree that follows a specific ordering rule:
+- Values smaller than a node go to its left subtree.
+- Values greater than a node go to its right subtree.
+For a BST:
+- Balanced tree: \(O(\log n)\)
+- Skewed tree: \(O(n)\)
+More precisely, searching takes \(O(h)\), where \(h\) is the height of the tree.
+-A heap is a specialised tree-based data structure designed to make retrieving the minimum or maximum element efficient.
+-IN A MIN-HEAP EVERY PARENT IS SMALLER THAN OR EQUAL TO ITS CHILDREN THIS IS CALLED THE HEAP PROPERTY
+-A heap gives us a more efficient way to maintain access to the highest- or lowest-priority element.
+-A heap is a specialised tree-based data structure designed to make retrieving the minimum or maximum element efficient.
+Insertion complexity:
+- Appending to a list: O(1) amortized.
+- Sift up: O(log n) worst case.
+- Overall insertion: O(log n).
+Why logarithmic? Because we can move upwards only through the height of the tree.
+Operation	What it does	Complexity
+Peek	Returns root without removing it	O(1)
+Insert	Adds a value and sifts up	O(log n)
+Extract min	Removes and returns minimum	O(log n)
+Build heap	Converts an arbitrary list into a heap	O(n)
+-A heap is excellent at finding its minimum or maximum, but it is not designed for fast arbitrary searches.
+-The central distinction:
+- A BST is designed to support ordered searching.
+- A heap is designed to efficiently retrieve the highest- or lowest-priority element.
+-worst time complexity for extracting the minimu os O(log n) because the replacement root moves down the height of the tree
+
+parent = (i - 1) // 2
+-
