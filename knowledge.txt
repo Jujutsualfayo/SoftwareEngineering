@@ -151,3 +151,6 @@ Build heap	Converts an arbitrary list into a heap	O(n)
 
 parent = (i - 1) // 2
 -sift_down() must not simply swap with any child. It must always choose the smaller of the two children.
+-Sift down is the mirror of sift up. It’s used after you remove the root (pop / extract_min): you move the last item to the root, then push it down until the heap property is restored.
+-formula to get the left and the right child in a heap :    Left child = 2*i + 1, right child = 2*i + 2.
+-

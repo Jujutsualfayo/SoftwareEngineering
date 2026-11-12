@@ -16,6 +16,21 @@ class MinHeap:
                 i = parent
             else:
                 break
+    def sift_down(self,i):
+        n = len(self.heap)
+        while True:
+            left = 2 * i + 1
+            right = 2 * i + 2
+            smallest = i
+            if left < n and self.heap[left] < self.heap[smallest]:
+                smallest = left
+            if right < n and self.heap[right] < self.heap[smallest]:
+                smallest = right
+            if smallest == i:
+                break
+            self.heap[i], self.heap[smallest] = self.heap[smallest], self.heap[i]
+            i = smallest
+             
 heap = MinHeap()
 
 try:
