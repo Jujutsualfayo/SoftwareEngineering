@@ -150,4 +150,4 @@ Build heap	Converts an arbitrary list into a heap	O(n)
 -worst time complexity for extracting the minimu os O(log n) because the replacement root moves down the height of the tree
 
 parent = (i - 1) // 2
--
+-sift_down() must not simply swap with any child. It must always choose the smaller of the two children.
