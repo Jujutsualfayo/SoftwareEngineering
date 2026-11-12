@@ -39,6 +39,13 @@ class MinHeap:
         if self.heap:#still not empty
             self.sift_down(0)
         return min_value
+    def heapify(self, numbers):
+        self.heap = numbers.copy()
+        n = len(self.heap)
+        start = (n - 2) // 2
+        for i in range(start, -1, -1):
+            self.sift_down(i)
+            
              
 heap = MinHeap()
 
