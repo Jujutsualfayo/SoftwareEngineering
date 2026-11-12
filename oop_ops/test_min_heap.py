@@ -67,3 +67,13 @@ def test_extract_min_returns_sorted_order():
         result.append(heap.extract_min())
 
     assert result == [2, 3, 5, 8, 10, 12]
+def test_heapify_root_and_input_unchanged():
+    numbers = [10, 5, 3, 8, 2, 7, 4, 9]
+    heap = MinHeap()
+    heap.heapify(numbers)
+
+    # 1. the root is the minimum
+    assert heap.peek() == 2
+
+    # 2. the original list was not modified
+    assert numbers == [10, 5, 3, 8, 2, 7, 4, 9]
