@@ -30,6 +30,15 @@ class MinHeap:
                 break
             self.heap[i], self.heap[smallest] = self.heap[smallest], self.heap[i]
             i = smallest
+    def extract_min(self):
+        if not self.heap:
+            raise IndexError("Extracting from empty heap")
+        min_value = self.heap[0] #stored it
+        self.heap[0] = self.heap[-1]
+        self.heap.pop()
+        if self.heap:#still not empty
+            self.sift_down(0)
+        return min_value
              
 heap = MinHeap()
 
