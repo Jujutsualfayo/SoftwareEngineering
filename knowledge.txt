@@ -157,4 +157,16 @@ parent = (i - 1) // 2
 -Heapify works from the last non-leaf node backwards to the root.
 -heapify:The goal: turn an unordered list into a valid min-heap in O(n) time, without inserting items one at a time.
 -start = len(self.heap) // 2 - 1 this is the index of the last none node leaf
+-index = hash(key) mod 10
+-Key → Hash function → Array index → Stored value.
+-A hash function takes a key and produces an integer.
+-ord() returns the Unicode integer value of a character.
+-Important distinction: The hash function produces a hash value. The modulo operation maps that hash value to an available array index.
+These are two separate operations.
+collision resolution techniques
+a)  Separate chaining
+Each array position stores a collection of key-value pairs, often implemented using a linked list.
+b) Open addressing
+Instead of storing multiple entries in one bucket, we find another available position in the array.
+- Python's built-in dict is a hash-table-based mapping.
 -
