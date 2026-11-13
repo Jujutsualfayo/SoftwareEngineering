@@ -759,4 +759,42 @@ Common complexities:
 ---
 
 ### 9.3 HASH TABLES
+-A data structure that stores key-value pairs and uses a hash function to compute an index into an array (buckets/slots), enabling very fast lookup, insertion, and deletion.
+-the core idea :key → hash function → index → bucket in array
+-A collision happens when two different keys map to the same index. Unavoidable (pigeonhole principle), so they must be handled.
+-1. Separate Chaining
+Each bucket holds a linked list (or tree) of entries
+*Colliding keys are appended to the list
+*Simple; the table never truly “fills up”
+*Java’s HashMap converts long chains into balanced trees (since Java 8)
+-2)Open Addressing
+*All entries live in the array itself. On collision, probe for another slot:
+*Linear probing: try i+1, i+2, ... (causes primary clustering)
+*Quadratic probing: try i+1², i+2², ... (causes secondary clustering)
+*Double hashing: use a second hash function for the step size (best distribution)
+*Deletion needs tombstones (markers) so probe sequences don’t break.
+-Load Factor (α) = number of entries / number of buckets
+-Chaining: works with α > 1, but performance degrades
+Open addressing: α must be < 1; keep below ~0.7
+When α exceeds a threshold, resize (rehash): typically double the array size and reinsert all keys
+-
+Time Complexity
+Operation Average	Worst Case
+Search	O(1)	          O(n)
+Insert	O(1)	          O(n)
+Delete	O(1)           	  O(n)
+*Worst case occurs when all keys collide. Resizing is O(n) but amortized O(1) per insert.
+Space: O(n)
+
+
+
+
+
+
+
+
+
+
+
+
 
