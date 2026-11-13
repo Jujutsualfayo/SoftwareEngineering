@@ -1,4 +1,4 @@
-import pytest 
+import pytest
 from min_heap import MinHeap
 
 
