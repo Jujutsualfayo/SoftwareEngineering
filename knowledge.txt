@@ -1,160 +1,762 @@
--c is a low level programming language
--c is a small language and relatively makes use of standard libraries
--to convert a program into a form that the machine can execute involves the following processes: preposessor, compilling, linking.
--to copile a program in c, use the cmd    cc -o pun pun.c (given that you want the a.out file to be named pun) otherwise    cc pun.c
--also can be compilled using the gcc compiler       gcc -o pun pun.c
--c has no built in read and write commands
-- we use <stdio.h> which is a header (directive) is to be able to perform input and output functions
--the word int before manin(void) indicates that the program returns an integer value
--the word (void) in parenthesis indicates that main has no arguments
--return 0 has two effects: indicates program termination and also that the programs returns a zero value
--asking a func to perform its assigned task is called calling
--we can comment in 2 ways:    /* this is a comment */    or   // this is a comment.
-the  // comment ends when a new line is started
--variables are storage locations for data in program execution and each variable must have a type which specifies the kind of data it will hold.
--floating points can store larger numbers than int, they can also store decimals
--Before avariable is assigned such like  height = 5; it must first be declared this way:  int height;
--append the letter f to a constant that has decimalsif the number is assigned to a float variable:height = 400.44f
--%d is a placeholder indicating where a value is supposed to be filled during printing
-eg. printf("Height: %d\n", height)
--the f in both scanf and printf stands for formatted
--to read an int value we shall use scanf as follows:
+# SOFTWARE ENGINEERING KNOWLEDGE BASE
 
-scanf("%d", &i);
-- the %d tells scanf to read integer value
--for float we use scanf as follows;
+**Personal Technical Documentation**  
+**Primary Languages:** C, Python  
+**Purpose:** Documenting programming concepts, implementation experience, technical discoveries, and problem-solving principles.
 
-scanf("%f", &x);
--dweight2.c file
+---
 
+# PART I: C PROGRAMMING FUNDAMENTALS
+
+## CHAPTER 1: INTRODUCTION TO C
+
+### 1.1 Understanding C
+
+- C is a low-level, general-purpose programming language.
+- It provides relatively direct access to computer memory and hardware resources.
+- C is a relatively small language with a standard library that provides commonly used functionality.
+- C does not have built-in `read` and `write` commands. Input and output operations are provided through library functions.
+
+### 1.2 The Compilation Process
+
+Converting a C program into an executable form involves four major stages:
+
+1. **Preprocessing:** Processes directives such as `#include` and `#define`.
+2. **Compilation:** Translates the preprocessed C source code into assembly code.
+3. **Assembly:** Converts assembly code into machine-level object code.
+4. **Linking:** Combines object files and required libraries to produce an executable.
+
+### 1.3 Compiling a C Program
+
+To compile a C program using the `cc` compiler:
+
+```bash
+cc -o pun pun.c
+```
+
+- `cc` invokes the C compiler.
+- `-o pun` specifies the output executable's name.
+- `pun.c` is the source file.
+
+Without specifying an output name:
+
+```bash
+cc pun.c
+```
+
+The compiler normally produces an executable named `a.out` on Unix-like systems.
+
+The GCC compiler can also be used:
+
+```bash
+gcc -o pun pun.c
+```
+
+### 1.4 The Structure of a C Program
+
+Example:
+
+```c
 #include <stdio.h>
 
-int main(void){
-int height, length, width, volume, weight;
+int main(void)
+{
+    printf("Hello, World!\n");
 
-printf("Enter height of box:  ");
-scanf("%d", &height);
-print("Enter length of box: ");
-scanf("%d", &length);
-print("Enter width of box: ");
-scanf("%d", &width);
-volume = lenght * height * width;
-weight = (volume + 165) / 166;
-
-printf("volume in cubic inches: %d\n", volume);
-printf("Dimensional weight in Pounds: %d\n", weight);
-
-return 0;
+    return 0;
 }
+```
 
--DEFINING NAMES FOR CONSTANTS
--Constants can be named using the macro definition feature
--we use #define (this is a preposessing directive)
-for e.g
+Understanding the components:
 
+- `#include <stdio.h>` includes the Standard Input/Output header file, which provides declarations for functions such as `printf()` and `scanf()`.
+- `int` indicates that the `main()` function returns an integer.
+- `main()` is the entry point of a C program.
+- `void` indicates that the function accepts no arguments.
+- `printf()` displays formatted output.
+- `return 0;` terminates the program and indicates successful execution.
+
+### 1.5 Function Calls
+
+Asking a function to perform its assigned task is called **calling a function**.
+
+Example:
+
+```c
+printf("Hello");
+```
+
+Here, `printf()` is being called to display text.
+
+### 1.6 Comments in C
+
+C supports two main comment styles.
+
+**Single-line comments:**
+
+```c
+// This is a comment.
+```
+
+A single-line comment ends when the line ends.
+
+**Multi-line comments:**
+
+```c
+/*
+This is a multi-line comment.
+It can extend across several lines.
+*/
+```
+
+Comments are ignored during compilation and are useful for documenting code.
+
+---
+
+## CHAPTER 2: VARIABLES AND DATA TYPES
+
+### 2.1 Understanding Variables
+
+Variables are named storage locations used to hold data during program execution.
+
+Every variable must have a data type that determines the kind of value it can store.
+
+Examples:
+
+```c
+int height;
+float weight;
+char grade;
+```
+
+### 2.2 Variable Declaration and Assignment
+
+Before assigning a value to a variable, it must first be declared.
+
+Declaration:
+
+```c
+int height;
+```
+
+Assignment:
+
+```c
+height = 5;
+```
+
+Declaration and initialization can also happen together:
+
+```c
+int height = 5;
+```
+
+### 2.3 Integer and Floating-Point Types
+
+**Integer (`int`)**
+
+Stores whole numbers.
+
+```c
+int age = 26;
+```
+
+**Floating-point (`float`)**
+
+Stores numbers that can contain fractional or decimal components.
+
+```c
+float height = 5.8f;
+```
+
+Floating-point types can represent a wider numerical range than many integer types, depending on the implementation, but they have limited precision.
+
+When assigning a floating-point constant to a `float`, the `f` suffix indicates that the constant is of type `float`.
+
+Example:
+
+```c
+float height = 400.44f;
+```
+
+---
+
+## CHAPTER 3: FORMATTED INPUT AND OUTPUT
+
+### 3.1 The `printf()` Function
+
+C uses `printf()` to display formatted output.
+
+The `%d` conversion specification indicates where an integer should be displayed in decimal notation.
+
+Example:
+
+```c
+int height = 180;
+
+printf("Height: %d\n", height);
+```
+
+Output:
+
+```text
+Height: 180
+```
+
+The `\n` escape sequence moves the cursor to a new line.
+
+### 3.2 The `scanf()` Function
+
+C uses `scanf()` to receive formatted input from the user.
+
+The letter `f` in both `printf` and `scanf` refers to formatting.
+
+To read an integer:
+
+```c
+int i;
+
+scanf("%d", &i);
+```
+
+- `%d` tells `scanf()` to read an integer.
+- `&i` provides the memory address where the input value should be stored.
+
+To read a floating-point value:
+
+```c
+float x;
+
+scanf("%f", &x);
+```
+
+### 3.3 Common Conversion Specifications
+
+| Specification | Purpose |
+|---|---|
+| `%d` | Integer |
+| `%f` | Floating-point output or `float` input |
+| `%.1f` | Floating-point output to one decimal place |
+| `%c` | Character |
+| `%s` | String |
+
+**Important:** When using `printf()` and `scanf()`, ensure that the number and types of conversion specifications match the corresponding arguments.
+
+---
+
+## CHAPTER 4: PRACTICAL C IMPLEMENTATIONS
+
+### 4.1 Calculating Dimensional Weight
+
+**File:** `dweight2.c`
+
+Objective: Calculate the volume of a box and determine its dimensional weight.
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    int height, length, width, volume, weight;
+
+    printf("Enter height of box: ");
+    scanf("%d", &height);
+
+    printf("Enter length of box: ");
+    scanf("%d", &length);
+
+    printf("Enter width of box: ");
+    scanf("%d", &width);
+
+    volume = length * height * width;
+    weight = (volume + 165) / 166;
+
+    printf("Volume in cubic inches: %d\n", volume);
+    printf("Dimensional weight in pounds: %d\n", weight);
+
+    return 0;
+}
+```
+
+**Technical observations:**
+
+- Variables must be declared before use.
+- `scanf()` reads the dimensions supplied by the user.
+- Multiplication calculates the volume.
+- Integer division is used in the dimensional weight calculation.
+
+### 4.2 Defining Names for Constants
+
+Constants can be given meaningful names using the C preprocessor's macro definition feature.
+
+The `#define` directive allows us to associate a name with a constant value.
+
+Example:
+
+```c
 #define INCHES_PER_POUND 166
+```
 
-weight = (volume + INCHES_PER_POUND -1) / INCHES_PER_POUND);
-is the same as saying;
-weight = (volume + 166 -1) / 166);
+Instead of writing:
 
--macro naming constants is done using capital letters
+```c
+weight = (volume + 166 - 1) / 166;
+```
 
--CONVERTING FROM FAHREINHEIT TO CELSIUS
-celcius.c file
+We can write:
 
+```c
+weight = (volume + INCHES_PER_POUND - 1)
+         / INCHES_PER_POUND;
+```
+
+Both expressions perform the same calculation.
+
+**Naming convention:**
+
+- Macro constants are conventionally written in uppercase.
+- Meaningful names make programs easier to understand and maintain.
+- `#define` is processed during preprocessing.
+
+### 4.3 Fahrenheit to Celsius Conversion
+
+**File:** `celsius.c`
+
+Objective: Convert a temperature from Fahrenheit to Celsius.
+
+Formula:
+
+\[
+C = (F - 32)\times\frac{5}{9}
+\]
+
+Implementation:
+
+```c
 #include <stdio.h>
 
 #define FREEZING_PT 32.0f
-#define SCALE_FACTOR (5.0F / 9.0F)
+#define SCALE_FACTOR (5.0f / 9.0f)
 
-int main(void){
+int main(void)
+{
+    float fahrenheit, celsius;
 
-float fahrenheit, celcius;
+    printf("Input Fahrenheit: ");
+    scanf("%f", &fahrenheit);
 
-printf("Input fahrenheit: ");
-scanf("%f", &fahrenheit);
-celcius = (fahrenheit - FREEZING_PT) * SCALE_FACTOR;
+    celsius = (fahrenheit - FREEZING_PT) * SCALE_FACTOR;
 
-printf("Celcius equivalent: %.1f\n", celcius);
-return 0;
+    printf("Celsius equivalent: %.1f\n", celsius);
+
+    return 0;
 }
+```
 
--
-FORMATTED INPUT/OUTPUT
-THE PRINF FUNC/SCANF FUNC
--%d displays an int into decimal form using the smallest amount of space needed.
--When using the printf and scanf the programmer must be wary to check that the number of conversion specifications matches the number of input variables
--Adding fractions
+**Technical observations:**
 
-/*Adding fractions*/
+- `FREEZING_PT` represents the Fahrenheit freezing point of water.
+- `SCALE_FACTOR` represents the conversion ratio.
+- `%.1f` displays the result to one decimal place.
+- Parentheses control the order of arithmetic operations.
 
+### 4.4 Adding Fractions
+
+Objective: Add two fractions and display the resulting fraction.
+
+```c
 #include <stdio.h>
 
-int main(void){
-int first_num, second_num, first_denom, second_denom, result_num, result_denom
+int main(void)
+{
+    int first_num, second_num;
+    int first_denom, second_denom;
+    int result_num, result_denom;
 
-printf("Insert first fraction: ");
-scanf("%d/%d", &first_num, &first_denom);
-printf("Insert second fraction: ");
-scanf("%d/%d", &second_num, &second_denom);
+    printf("Insert first fraction: ");
+    scanf("%d/%d", &first_num, &first_denom);
 
-result_num = first_num * second_denom + second_num * first_denom;
-result_denom = first_denom * second_denom;
-printf("result of the addition is: %d/%d\n", result_num, result_denom);
+    printf("Insert second fraction: ");
+    scanf("%d/%d", &second_num, &second_denom);
 
-return 0;
+    result_num = first_num * second_denom
+               + second_num * first_denom;
 
+    result_denom = first_denom * second_denom;
+
+    printf("Result of addition: %d/%d\n",
+           result_num, result_denom);
+
+    return 0;
 }
+```
 
+**Mathematical principle:**
 
+Given:
 
+\[
+\frac{a}{b}+\frac{c}{d}
+\]
 
-CHAPTER 4: EXPRESSIONS
-A)Arithmetic operators
+The resulting fraction is:
 
-Python lists don't have a .peek() method. In our implementation, self.items is a regular Python list.
-Python provides collections.deque, a double-ended queue designed for efficient insertion and removal at both ends.
-deque = a data structure that lets you add and remove from both ends efficiently (append, appendleft, pop, popleft)
-Binary search requires sorted data and efficient access to the middle element. It's particularly suitable for arrays.
-O(log n) represents: the number of times we can divide the problem size by two until we reach one.
-why do we right  left = middle +1 
-We've already examined the middle element. If it wasn't our target, there's no reason to examine it again.
-A tree is a non-linear data structure that organises data in a hierarchy. Unlike arrays and linked lists, where elements are typically arranged sequentially, a tree represents relationships between elements.
-Recursion is when a function calls itself to solve a smaller version of the same problem.
-A Binary Search Tree is a special type of binary tree that follows a specific ordering rule:
-- Values smaller than a node go to its left subtree.
-- Values greater than a node go to its right subtree.
-For a BST:
-- Balanced tree: \(O(\log n)\)
-- Skewed tree: \(O(n)\)
-More precisely, searching takes \(O(h)\), where \(h\) is the height of the tree.
--A heap is a specialised tree-based data structure designed to make retrieving the minimum or maximum element efficient.
--IN A MIN-HEAP EVERY PARENT IS SMALLER THAN OR EQUAL TO ITS CHILDREN THIS IS CALLED THE HEAP PROPERTY
--A heap gives us a more efficient way to maintain access to the highest- or lowest-priority element.
--A heap is a specialised tree-based data structure designed to make retrieving the minimum or maximum element efficient.
-Insertion complexity:
-- Appending to a list: O(1) amortized.
-- Sift up: O(log n) worst case.
-- Overall insertion: O(log n).
-Why logarithmic? Because we can move upwards only through the height of the tree.
-Operation	What it does	Complexity
-Peek	Returns root without removing it	O(1)
-Insert	Adds a value and sifts up	O(log n)
-Extract min	Removes and returns minimum	O(log n)
-Build heap	Converts an arbitrary list into a heap	O(n)
--A heap is excellent at finding its minimum or maximum, but it is not designed for fast arbitrary searches.
--The central distinction:
+\[
+\frac{ad+bc}{bd}
+\]
+
+The implementation follows this mathematical relationship.
+
+---
+
+# PART II: PYTHON AND DATA STRUCTURES
+
+## CHAPTER 5: PYTHON COLLECTIONS AND QUEUES
+
+### 5.1 Python Lists and the Peek Operation
+
+Python lists do not have a built-in `.peek()` method.
+
+In our implementation, `self.items` is a regular Python list.
+
+To inspect the last element without removing it:
+
+```python
+self.items[-1]
+```
+
+To inspect the first element:
+
+```python
+self.items[0]
+```
+
+The appropriate index depends on how the data structure is implemented.
+
+### 5.2 Python's `collections.deque`
+
+Python provides `collections.deque`, a double-ended queue designed for efficient insertion and removal at both ends.
+
+```python
+from collections import deque
+
+items = deque()
+
+items.append(10)
+items.appendleft(5)
+
+items.pop()
+items.popleft()
+```
+
+Common operations:
+
+| Operation | Function |
+|---|---|
+| `append(x)` | Add an element to the right |
+| `appendleft(x)` | Add an element to the left |
+| `pop()` | Remove from the right |
+| `popleft()` | Remove from the left |
+
+A deque is useful when both ends of a collection need efficient access.
+
+---
+
+## CHAPTER 6: SEARCHING ALGORITHMS
+
+### 6.1 Binary Search
+
+Binary search is an efficient searching algorithm that repeatedly divides a search space into two halves.
+
+**Important requirements:**
+
+- The data must be sorted.
+- The data structure must support efficient access to its middle element.
+- It is particularly suitable for arrays and Python lists.
+
+### 6.2 Understanding Big-O: O(log n)
+
+\(O(\log n)\) represents logarithmic time complexity.
+
+In binary search, it describes the number of times the search space can be divided by two before reaching the target or exhausting the search space.
+
+For example:
+
+\[
+64 \rightarrow 32 \rightarrow 16 \rightarrow 8
+\rightarrow 4 \rightarrow 2 \rightarrow 1
+\]
+
+Each operation eliminates approximately half of the remaining search space.
+
+### 6.3 Why Do We Write `left = middle + 1`?
+
+Consider:
+
+```python
+left = middle + 1
+```
+
+We use this when the target is greater than the middle element.
+
+**Reasoning:**
+
+We have already examined the middle element. If it is not our target, there is no reason to examine it again.
+
+Therefore, we move the left boundary one position beyond the middle.
+
+Similarly:
+
+```python
+right = middle - 1
+```
+
+When the target is smaller than the middle element, we move the right boundary one position before the middle.
+
+---
+
+## CHAPTER 7: TREES AND RECURSION
+
+### 7.1 Understanding Trees
+
+A tree is a non-linear data structure that organises data hierarchically.
+
+Unlike arrays and linked lists, where elements are typically arranged sequentially, a tree represents relationships between elements.
+
+Common terminology:
+
+- **Root:** The topmost node.
+- **Parent:** A node that has one or more children.
+- **Child:** A node connected below another node.
+- **Leaf:** A node without children.
+- **Subtree:** A tree formed from a node and its descendants.
+- **Height:** The length of the longest downward path, measured in edges, from a node to a leaf.
+
+### 7.2 Recursion
+
+Recursion occurs when a function calls itself to solve a smaller version of the same problem.
+
+A recursive function generally requires:
+
+1. **Base case:** The condition that stops recursion.
+2. **Recursive case:** The part where the function calls itself with a smaller or simpler problem.
+
+Recursion is particularly useful when working with hierarchical structures such as trees.
+
+### 7.3 Binary Search Trees (BST)
+
+A Binary Search Tree is a specialised binary tree that follows an ordering rule.
+
+- Values smaller than a node go into its left subtree.
+- Values greater than a node go into its right subtree.
+
+This ordering allows efficient searching when the tree is reasonably balanced.
+
+### 7.4 BST Search Complexity
+
+| Tree Structure | Search Complexity |
+|---|---|
+| Balanced BST | O(log n) |
+| Skewed BST | O(n) |
+
+More precisely, searching takes \(O(h)\), where \(h\) represents the height of the tree.
+
+A balanced tree has a relatively small height, while a skewed tree can behave like a linked list.
+
+---
+
+## CHAPTER 8: HEAPS AND PRIORITY QUEUES
+
+### 8.1 Understanding Heaps
+
+A heap is a specialised tree-based data structure designed to make retrieving the minimum or maximum element efficient.
+
+A heap is commonly implemented using an array or Python list.
+
+Its primary purpose is to maintain access to the highest- or lowest-priority element.
+
+### 8.2 The Min-Heap Property
+
+In a min-heap, every parent node must be smaller than or equal to its children.
+
+This is called the **heap property**.
+
+For example:
+
+```text
+        5
+       / \
+      10  15
+     / \
+    20  25
+```
+
+The root always contains the minimum value.
+
+### 8.3 Heap vs Binary Search Tree
+
+The central distinction:
+
 - A BST is designed to support ordered searching.
 - A heap is designed to efficiently retrieve the highest- or lowest-priority element.
--worst time complexity for extracting the minimu os O(log n) because the replacement root moves down the height of the tree
 
+A heap is excellent at finding its minimum or maximum element, but it is not designed for fast arbitrary searches.
+
+### 8.4 Heap Index Calculations
+
+When a binary heap is stored in an array, relationships between parent and child nodes can be calculated using indices.
+
+For a node at index `i`:
+
+**Parent:**
+
+```python
 parent = (i - 1) // 2
--sift_down() must not simply swap with any child. It must always choose the smaller of the two children.
--Sift down is the mirror of sift up. It’s used after you remove the root (pop / extract_min): you move the last item to the root, then push it down until the heap property is restored.
--formula to get the left and the right child in a heap :    Left child = 2*i + 1, right child = 2*i + 2.
--For a heap of n items, the last non-leaf node is at index:  (n - 2) // 2 
--Heapify works from the last non-leaf node backwards to the root.
--heapify:The goal: turn an unordered list into a valid min-heap in O(n) time, without inserting items one at a time.
--start = len(self.heap) // 2 - 1 this is the index of the last none node leaf
+```
+
+**Left child:**
+
+```python
+left_child = 2 * i + 1
+```
+
+**Right child:**
+
+```python
+right_child = 2 * i + 2
+```
+
+These formulas assume zero-based indexing.
+
+### 8.5 Sift Up
+
+Sift up is the process of moving a newly inserted element towards the root until the heap property is restored.
+
+When inserting into a min-heap:
+
+1. Append the new value to the end of the list.
+2. Compare it with its parent.
+3. If it is smaller than its parent, swap them.
+4. Continue until the heap property is satisfied or the root is reached.
+
+**Complexity:**
+
+- Appending to a Python list: O(1) amortized.
+- Sift up: O(log n) worst case.
+- Overall insertion: O(log n).
+
+Why logarithmic?
+
+Because the element can move upwards only through the height of the tree.
+
+### 8.6 Sift Down
+
+Sift down is the opposite of sift up.
+
+It is used after removing the root (for example, during `pop()` or `extract_min()`).
+
+The process:
+
+1. Remove the root.
+2. Move the last element to the root.
+3. Compare it with its children.
+4. Swap it with the smaller child if necessary.
+5. Continue until the heap property is restored.
+
+**Important principle:**
+
+In a min-heap, sift down must not simply swap with any child. It must always choose the smaller of the two children when both children exist.
+
+The replacement root can move down through the height of the tree.
+
+Therefore:
+
+- Sift down: O(log n).
+- Extract minimum: O(log n).
+
+### 8.7 Finding the Last Non-Leaf Node
+
+For a heap containing `n` elements, the last non-leaf node is located at:
+
+```python
+last_non_leaf = (n - 2) // 2
+```
+
+This formula assumes zero-based indexing.
+
+### 8.8 Heapify
+
+Heapify converts an unordered list into a valid heap.
+
+The objective is to construct a min-heap efficiently without inserting elements one at a time.
+
+**Key principle:**
+
+Heapify works backwards from the last non-leaf node towards the root.
+
+Example:
+
+```python
+start = len(self.heap) // 2 - 1
+```
+
+This calculates the index of the last non-leaf node.
+
+We then repeatedly apply `sift_down()` until we reach the root.
+
+**Why work backwards?**
+
+The leaf nodes are already valid heaps because they contain no children.
+
+By processing the last non-leaf node first and moving towards the root, we ensure that the child subtrees have already been organised when their parents are processed.
+
+**Build Heap Complexity:**
+
+\[
+O(n)
+\]
+
+Building a heap using heapify is O(n), whereas inserting all elements individually can take O(n log n) in the worst case.
+
+### 8.9 Heap Operations and Complexity
+
+| Operation | Description | Complexity |
+|---|---|---|
+| Peek | Returns the root without removing it | O(1) |
+| Insert | Adds a value and sifts up | O(log n) |
+| Extract Min | Removes and returns the minimum | O(log n) |
+| Build Heap | Converts an arbitrary list into a heap | O(n) |
+
+---
+
+# PART III: ENGINEERING PRINCIPLES
+
+## CHAPTER 9: COMPLEXITY AND ALGORITHMIC REASONING
+
+### 9.1 Understanding Time Complexity
+
+Time complexity describes how an algorithm's computational requirements grow as the input size increases.
+
+Common complexities:
+
+| Complexity | Description |
+|---|---|
+| O(1) | Constant time |
+| O(log n) | Logarithmic time |
+| O(n) | Linear time |
+| O(n log n) | Linearithmic time |
+| O(n²) | Quadratic time |
+
+### 9.2 Important Distinctions
+
+- A BST prioritises ordered searching.
+- A heap prioritises efficient access to its root element.
+- Binary search requires sorted data.
+- Recursion solves problems through smaller instances of the same problem.
+- Heapify is more efficient than inserting elements individually when constructing a heap from an existing collection.
+
+### 9.3 HASH TABLES
+-A data structure that stores key-value pairs and uses a hash function to compute an index into an array (buckets/slots), enabling very fast lookup, insertion, and deletion.
+-key → hash function → index → bucket in array
+-A collision happens when two different keys map to the same index. Unavoidable (pigeonhole principle), so they must be handled.
 -
